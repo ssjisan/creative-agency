@@ -3,6 +3,7 @@ import Service from '../Service/Service';
 import ServiceOne from '../../../images/icons/service1.png'
 import ServiceTwo from '../../../images/icons/service2.png'
 import ServiceThree from '../../../images/icons/service3.png'
+import Order from '../../Order/Order';
 const serviceList = [
     {
         title: "Web and Mobile Design",
