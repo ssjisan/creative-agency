@@ -4,7 +4,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import './Service.css'
 const useStyles = makeStyles((theme) => ({
     large: {
       width: theme.spacing(7),
@@ -26,20 +25,21 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 12,
       },
   }));
-const Service = (props) => {
+const ShowTestimonial = (props) => {
     const classes = useStyles();
-    const {title, details, pic} = props.list;
+    const {name,comment,company, pic} = props.comments;
     return (
-        <main className="d-flex justify-content-center col-md-4">
+            <main className="d-flex justify-content-center col-md-4">
             <Card className={classes.root} id="card">
                 <CardContent>
                     <Avatar alt="Remy Sharp" src={pic} className={classes.large} style={{margin: "auto"}} /> 
-                    <h3 style={{textAlign:"center"}}>{title}</h3>
-                    <Typography variant="body2" component="p" style={{textAlign:"center"}}>{details}</Typography>
+                    <h3 style={{textAlign:"center"}}>{name}</h3>
+                    <Typography variant="body2" component="p" style={{textAlign:"center"}}>{company}</Typography> <br/>
+                    <Typography variant="body2" component="p" style={{textAlign:"center"}}>{comment}</Typography>
                 </CardContent>
             </Card>
         </main>
     );
 };
 
-export default Service;
+export default ShowTestimonial;

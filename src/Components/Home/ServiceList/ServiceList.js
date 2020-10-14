@@ -23,7 +23,7 @@ const serviceList = [
 const ServiceList = () => {
     return (
         <section >
-            <div className="text-center">
+            <div>
             <h2 style={{textAlign:"center", paddingTop:200}}>Provide Awsome, <span style={{color:"green"}}>Services</span> </h2>
             </div>
             <div className="d-flex justify-content-center" >
