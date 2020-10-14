@@ -1,0 +1,11 @@
+.footer{
+    position: relative;
+    bottom: auto;
+    width: 100%;
+    height: 550px;
+    background-color: #FBD062;
+}
+
+.form-control{
+    width: 500px;
+}
