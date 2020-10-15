@@ -1,0 +1,10 @@
+input[type="file"]{
+    display: none;
+}
+label{
+    width: 196px;
+    height: 47px;
+    background-color: aqua;
+    cursor: pointer;
+    font-weight: bold;
+}

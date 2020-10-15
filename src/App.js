@@ -9,8 +9,9 @@ import {
 import Home from './Components/Home/Home/Home';
 import Login from './Components/Login/Login';
 import { useState,createContext } from 'react';
-import Order from './Components/Order/Order';
 import Admin from './Components/Admin/Admin';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
+import Order from './Components/Order/Order';
 
 export const UserContext = createContext();
 function App() {
@@ -25,9 +26,9 @@ const [loggedInUser, setLoggedInUser] = useState({});
         <Route path="/signIN">
           <Login></Login>
         </Route>
-        <Route path="/order">
+        <PrivateRoute path="/order/:id">
           <Order></Order>
-        </Route>
+        </PrivateRoute>
         <Route path="/admin">
           <Admin></Admin>
         </Route>

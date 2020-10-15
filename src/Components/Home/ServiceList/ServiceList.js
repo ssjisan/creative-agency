@@ -1,26 +1,8 @@
 import React from 'react';
 import Service from '../Service/Service';
-import ServiceOne from '../../../images/icons/service1.png'
-import ServiceTwo from '../../../images/icons/service2.png'
-import ServiceThree from '../../../images/icons/service3.png'
-import Order from '../../Order/Order';
-const serviceList = [
-    {
-        title: "Web and Mobile Design",
-        details: "We craft stunning and amazing web UI, using a well drrafted UX to fit your product.",
-        pic: ServiceOne
-    },
-    {
-        title: "Graphic design",
-        details: "Amazing flyers, social media posts and brand representations that would make your brand stand out.",
-        pic: ServiceTwo
-    },
-    {
-        title: "Web development",
-        details: "With well written codes, we build amazing apps for all platforms, mobile and web apps in general.",
-        pic: ServiceThree
-    },
-]
+import fakeData from '../../fakedata/fakedata'
+const serviceList = fakeData; 
+
 const ServiceList = () => {
     return (
         <section >

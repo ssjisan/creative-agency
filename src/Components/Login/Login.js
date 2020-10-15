@@ -28,20 +28,21 @@ const Login = () => {
                 email: email
             };
             setLoggedInUser(signedInUser);
+            console.log(signedInUser);
             history.replace(from);
         })
         
     }
 
     return (
-        <div>
-            <div  id="logo">
+        <div >
+            <div  id="logo" className="col-12">
                 <img src={logo} alt=""/>
             </div>
-            <div className="box">
+            <div className="box col-6">
                 <center>
                 <h2>Login With</h2>
-                <Button variant="danger" onClick={signInHandler} className="button"> <FontAwesomeIcon icon={faGoogle} style={{marginRight:50}} /> Continue with Google</Button>
+                <Button variant="danger" onClick={signInHandler} className="button col-10"> <FontAwesomeIcon icon={faGoogle} style={{marginRight:50}} /> Continue with Google</Button>
                 </center>
             </div>
         </div>

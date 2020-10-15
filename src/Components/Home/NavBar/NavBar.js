@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 import Logo from '../../../images/logos/logo.png'
 const NavBar = () => {
     return (
@@ -19,7 +20,7 @@ const NavBar = () => {
                         <a class="nav-link" href="#">Contact Us</a>
                     </li>
                 </ul>
-                    <button class="btn btn-dark" type="submit">Login</button>
+                    <Link to="/signIn"><button class="btn btn-dark" type="submit">Login</button></Link>
             </div>
         </nav>
     );

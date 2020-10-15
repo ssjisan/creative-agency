@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import './Service.css'
+import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     large: {
       width: theme.spacing(7),
@@ -28,16 +29,16 @@ const useStyles = makeStyles((theme) => ({
   }));
 const Service = (props) => {
     const classes = useStyles();
-    const {title, details, pic} = props.list;
+    const {title, details, pic,id} = props.list;
     return (
-        <main className="d-flex justify-content-center col-md-4">
-            <Card className={classes.root} id="card">
+        <main className="d-flex justify-content-center col-md-4 col-sm-3">
+            <Link to={"/order/"+id} style={{textDecoration: 'none'}}><Card className={classes.root} id="card">
                 <CardContent>
                     <Avatar alt="Remy Sharp" src={pic} className={classes.large} style={{margin: "auto"}} /> 
                     <h3 style={{textAlign:"center"}}>{title}</h3>
                     <Typography variant="body2" component="p" style={{textAlign:"center"}}>{details}</Typography>
                 </CardContent>
-            </Card>
+            </Card></Link>
         </main>
     );
 };
