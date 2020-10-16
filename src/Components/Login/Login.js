@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button'
 import '../Login/Login.css'
 import logo from '../../images/logos/logo.png'
-import {Link, useHistory, useLocation} from 'react-router-dom'
+import { useHistory, useLocation} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faGoogle } from '@fortawesome/free-brands-svg-icons'
 import * as firebase from "firebase/app";
@@ -28,7 +28,6 @@ const Login = () => {
                 email: email
             };
             setLoggedInUser(signedInUser);
-            console.log(signedInUser);
             history.replace(from);
         })
         

@@ -2,7 +2,7 @@ import React from 'react';
 import './Footer.css'
 const Footer = () => {
     return (
-        <main className="d-flex align-items-around footer">
+        <main className="row align-items-around footer">
             <div className="col-md-6 col-12 offset-md-1 align-self-center">
                 <h2>Let us Handle Your <br/> project, professionally.</h2>
                 <p>With well written codes, we build amazing apps for all platforms, mobile and web apps in general.</p>

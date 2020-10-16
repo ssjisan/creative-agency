@@ -29,14 +29,15 @@ const useStyles = makeStyles((theme) => ({
   }));
 const Service = (props) => {
     const classes = useStyles();
-    const {title, details, pic,id} = props.list;
+    const {title, details, pic,id, price} = props.list;
     return (
         <main className="d-flex justify-content-center col-md-4 col-sm-3">
             <Link to={"/order/"+id} style={{textDecoration: 'none'}}><Card className={classes.root} id="card">
                 <CardContent>
                     <Avatar alt="Remy Sharp" src={pic} className={classes.large} style={{margin: "auto"}} /> 
                     <h3 style={{textAlign:"center"}}>{title}</h3>
-                    <Typography variant="body2" component="p" style={{textAlign:"center"}}>{details}</Typography>
+                    <Typography variant="body2" component="p" style={{textAlign:"center"}}>{details}</Typography> <br/>
+                    <Typography variant="body2" component="p" style={{textAlign:"center"}}> <strong>Development Cost: {price} Taka</strong></Typography>
                 </CardContent>
             </Card></Link>
         </main>

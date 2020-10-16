@@ -9,9 +9,8 @@ import {
 import Home from './Components/Home/Home/Home';
 import Login from './Components/Login/Login';
 import { useState,createContext } from 'react';
-import Admin from './Components/Admin/Admin';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
-import Order from './Components/Order/Order';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 export const UserContext = createContext();
 function App() {
@@ -27,11 +26,8 @@ const [loggedInUser, setLoggedInUser] = useState({});
           <Login></Login>
         </Route>
         <PrivateRoute path="/order/:id">
-          <Order></Order>
+          <Dashboard></Dashboard>
         </PrivateRoute>
-        <Route path="/admin">
-          <Admin></Admin>
-        </Route>
       </Switch>
     </Router>
     </UserContext.Provider>

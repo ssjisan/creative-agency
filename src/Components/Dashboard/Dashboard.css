@@ -1,0 +1,13 @@
+.list{
+    padding-top: 25px;
+    padding-right: 25px;
+}
+
+.place-order{
+    padding-left: 40px;
+    padding-top: 40px;
+    width: 90%;
+    height: 800px;
+    background-color:#F4F7FC;
+    font-weight: bold;
+}
