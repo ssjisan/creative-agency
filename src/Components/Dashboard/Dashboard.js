@@ -1,6 +1,11 @@
 import React from 'react';
 import './Dashboard.css'
+import { makeStyles } from '@material-ui/core/styles';
 import logo from '../../images/logos/logo.png';
+import Avatar from '@material-ui/core/Avatar';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faCommentAlt } from '@fortawesome/free-solid-svg-icons'
 import {  faShoppingCart } from '@fortawesome/free-solid-svg-icons'
@@ -19,12 +24,44 @@ import {
     Link
   } from "react-router-dom";
 import { useState } from 'react';
+import { useEffect } from 'react';
+const useStyles = makeStyles((theme) => ({
+    large: {
+      width: theme.spacing(7),
+      height: theme.spacing(7),
+    },
+    root: {
+        width: 275,
+        height: 275
+      },
+      bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+      },
+      title: {
+        fontSize: 14,
+      },
+      pos: {
+        marginBottom: 12,
+      },
+  }));
 const Dashboard = () => {
+    const classes = useStyles();
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+/**********************************Get Data From Server to Site Start***************************************************/
+    const [placedOrder, setplacedOrder] = useState([]) 
+    useEffect(()=>{
+        fetch('http://localhost:3001/orderedservice?email='+loggedInUser.email)
+        .then(result=>result.json())
+        .then(data=>setplacedOrder(data))
+    },[])
+
+/**********************************Get Data From Server to Site End***************************************************/
     const {id} = useParams();
     const order = fakedata.find (order=> order.id == id);
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const routes = [
-        /*******************************************Route For Order Start************************************************************/   
+/*******************************************Route For Order Start************************************************************/   
         {
           path: `/order/${id}`,
           exact: true,
@@ -54,22 +91,39 @@ const Dashboard = () => {
                 </div>
                 
         },
-        /*******************************************Route For Order End************************************************************/
+/*******************************************Route For Order End************************************************************/
         
-        /*******************************************Route For ServiceList Start************************************************************/
+/*******************************************Route For ServiceList Start************************************************************/
         {
           path: `/order/${id}/orderedservice`,
           sidebar: () => <div></div>,
           main: () =>
-        <center>
-          <h3>Your Name</h3>
-          </center>
+            <div className="place-order">
+                <center><h4>Your Order</h4></center>
+            <p>
+                {
+                    placedOrder.map(placedOrder=>
+                    <main className="d-flex justify-content-around col-md-4">
+                       <Card className={classes.root} id="card">
+                            <CardContent>
+                                {/* <Avatar alt="Remy Sharp" src={require(`../../images/icons/${placedOrder.pic}`)} className={classes.large} style={{margin: "auto"}} />  */}
+                                <h3 style={{textAlign:"center"}}>{placedOrder.orderName}</h3>
+                                <p style={{textAlign:"center"}}>{placedOrder.description}</p>
+                            </CardContent>
+                        </Card>
+                    </main>
+                    )
+                }
+            </p>
+
+            </div>
+            
         },
-        /*******************************************Route For ServiceList End************************************************************/
+/*******************************************Route For ServiceList End************************************************************/
     
     
     
-        /*******************************************Route For Review Start************************************************************/
+/*******************************************Route For Review Start************************************************************/
         {
           path: `/order/${id}/review`,
           sidebar: () => <div></div>,
@@ -84,15 +138,36 @@ const Dashboard = () => {
                     </form>
                 </div>
         },
-        /*******************************************Route For Review End************************************************************/
+/*******************************************Route For Review End************************************************************/
     
-        /*******************************************Route For Service List Start************************************************************/   
+/****************************************Route For Service List Start************************************************************/   
         {
         path: "/admin/",
         exact: true,
         sidebar: () => <div></div>,
         main: () =>
-          <h2>You Have No Order Yet!!!</h2>
+          <div className="place-order">
+              <table class="table table-striped" style={{width:900}}>
+                <thead>
+                    <tr>
+                        <th scope="col">Project Name</th>
+                        <th scope="col">Ordered By</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                {
+                    placedOrder.map(placedOrder=>
+                        <tbody>
+                    <tr>
+                    <td>{placedOrder.orderName}</td>
+                        <td>{placedOrder.name}</td>
+                        <td>{placedOrder.email}</td>
+                    </tr>
+                </tbody>)
+                }
+              </table>
+
+          </div>
       },
       /*******************************************Route For Service List End************************************************************/
       
@@ -138,7 +213,7 @@ const [message, setMessage] = useState("");
 const handleMessage = (event) => {
   setMessage(event.target.value);
     }
-
+/*******************************************Order Post From Site to Server Start********************************************************/ 
 const handleSubmit = () =>{
     const confirmOrder = {
         name: loggedInUser.name,
@@ -146,6 +221,7 @@ const handleSubmit = () =>{
         orderID: order.id,
         price: order.price,
         orderName: order.title,
+        description: order.details,
         review: message
     };
     fetch('http://localhost:3001/orderPlaced', {
@@ -156,6 +232,8 @@ const handleSubmit = () =>{
     .then(res=> res.json())
     .then(data=>console.log(data))
     }
+/*******************************************Order Post From Site to Server End********************************************************/ 
+
     return (
          <main>
             <div className="d-flex justify-content-between">
@@ -168,6 +246,7 @@ const handleSubmit = () =>{
             <Router>
       <div style={{ display: "flex" }}>
         <div>
+    {/*************************************************************SideBar Menu Start***************************************************/  }
         <ul style={{listStyle:"none", paddingTop:20}}>
                     <Link to={`/order/${id}`} style={{color:"black", textDecoration:'none'}}><li> <FontAwesomeIcon icon={faShoppingCart} style={{marginRight:10}} /> Order</li></Link> <br/>
                     <Link to={`/order/${id}/orderedservice`} style={{color:"black", textDecoration:'none'}}><li> <FontAwesomeIcon icon={faShoppingBasket} style={{marginRight:10}} /> Service List</li> </Link> <br/>
@@ -176,6 +255,7 @@ const handleSubmit = () =>{
                     <Link to="/admin/addservice" style={{color:"black", textDecoration:'none'}}><li > <FontAwesomeIcon icon={faPlus} style={{marginRight:10}} /> Add Service</li></Link> <br/>
                     <Link to="/admin/makeadmin" style={{color:"black", textDecoration:'none'}}><li > <FontAwesomeIcon icon={faUserCheck} style={{marginRight:10}} />Make Admin</li></Link>
                 </ul>
+    {/*************************************************************SideBar Menu End***************************************************/  }
           <Switch>
             {routes.map((route, index) => (
               <Route
