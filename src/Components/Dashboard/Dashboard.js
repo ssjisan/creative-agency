@@ -2,10 +2,8 @@ import React from 'react';
 import './Dashboard.css'
 import { makeStyles } from '@material-ui/core/styles';
 import logo from '../../images/logos/logo.png';
-import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faCommentAlt } from '@fortawesome/free-solid-svg-icons'
 import {  faShoppingCart } from '@fortawesome/free-solid-svg-icons'
@@ -52,7 +50,7 @@ const Dashboard = () => {
 /**********************************Get Data From Server to Site Start***************************************************/
     const [placedOrder, setplacedOrder] = useState([]) 
     useEffect(()=>{
-        fetch('http://localhost:3001/orderedservice?email='+loggedInUser.email)
+        fetch('https://frozen-forest-83427.herokuapp.com/orderedservice?email='+loggedInUser.email)
         .then(result=>result.json())
         .then(data=>setplacedOrder(data))
     },[])
@@ -224,7 +222,7 @@ const handleSubmit = () =>{
         description: order.details,
         review: message
     };
-    fetch('http://localhost:3001/orderPlaced', {
+    fetch('https://frozen-forest-83427.herokuapp.com/orderPlaced', {
         method: "POST",
         headers: {'Content-Type' : 'application/json'},
         body : JSON.stringify(confirmOrder)

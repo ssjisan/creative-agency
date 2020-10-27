@@ -11,3 +11,7 @@
     background-color:#F4F7FC;
     font-weight: bold;
 }
+
+#file{
+    display: none;
+}
